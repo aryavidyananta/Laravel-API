@@ -21,5 +21,10 @@ class LoginController extends Controller
                 'message' => 'Unauthorized'
             ], 401);
         }
+
+        $user = auth()->user();
+        return response()->json([
+            'token' => $user->createToken('apitodos')->plainTextToken
+        ]);
 }
 }
